@@ -15,6 +15,10 @@
 		F312FAB71FAD356300CE033F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F312FAB61FAD356300CE033F /* main.m */; };
 		F312FAC11FAD356400CE033F /* PersonalCapitalRSSFeedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F312FAC01FAD356400CE033F /* PersonalCapitalRSSFeedTests.m */; };
 		F312FACC1FAD356400CE033F /* PersonalCapitalRSSFeedUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F312FACB1FAD356400CE033F /* PersonalCapitalRSSFeedUITests.m */; };
+		F312FADB1FAD361C00CE033F /* RSSFeedDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F312FADA1FAD361C00CE033F /* RSSFeedDataManager.m */; };
+		F312FADE1FAD36E500CE033F /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = F312FADD1FAD36E500CE033F /* Article.m */; };
+		F312FAE11FAD4EE100CE033F /* ArticleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F312FAE01FAD4EE100CE033F /* ArticleCollectionViewCell.m */; };
+		F312FAE41FAE375000CE033F /* ArticleDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F312FAE31FAE375000CE033F /* ArticleDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,14 @@
 		F312FAC71FAD356400CE033F /* PersonalCapitalRSSFeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersonalCapitalRSSFeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F312FACB1FAD356400CE033F /* PersonalCapitalRSSFeedUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCapitalRSSFeedUITests.m; sourceTree = "<group>"; };
 		F312FACD1FAD356400CE033F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F312FAD91FAD361C00CE033F /* RSSFeedDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSSFeedDataManager.h; sourceTree = "<group>"; };
+		F312FADA1FAD361C00CE033F /* RSSFeedDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSSFeedDataManager.m; sourceTree = "<group>"; };
+		F312FADC1FAD36E500CE033F /* Article.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Article.h; sourceTree = "<group>"; };
+		F312FADD1FAD36E500CE033F /* Article.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
+		F312FADF1FAD4EE100CE033F /* ArticleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleCollectionViewCell.h; sourceTree = "<group>"; };
+		F312FAE01FAD4EE100CE033F /* ArticleCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleCollectionViewCell.m; sourceTree = "<group>"; };
+		F312FAE21FAE375000CE033F /* ArticleDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleDetailsViewController.h; sourceTree = "<group>"; };
+		F312FAE31FAE375000CE033F /* ArticleDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleDetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +117,9 @@
 				F312FAA81FAD356300CE033F /* AppDelegate.m */,
 				F312FAAA1FAD356300CE033F /* ViewController.h */,
 				F312FAAB1FAD356300CE033F /* ViewController.m */,
+				F312FAE71FAF615B00CE033F /* DataManagers */,
+				F312FAE61FAF614200CE033F /* Models */,
+				F312FAE51FAF612900CE033F /* Controllers */,
 				F312FAAD1FAD356300CE033F /* Main.storyboard */,
 				F312FAB01FAD356300CE033F /* Assets.xcassets */,
 				F312FAB21FAD356300CE033F /* LaunchScreen.storyboard */,
@@ -130,6 +145,35 @@
 				F312FACD1FAD356400CE033F /* Info.plist */,
 			);
 			path = PersonalCapitalRSSFeedUITests;
+			sourceTree = "<group>";
+		};
+		F312FAE51FAF612900CE033F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F312FAE21FAE375000CE033F /* ArticleDetailsViewController.h */,
+				F312FAE31FAE375000CE033F /* ArticleDetailsViewController.m */,
+				F312FADF1FAD4EE100CE033F /* ArticleCollectionViewCell.h */,
+				F312FAE01FAD4EE100CE033F /* ArticleCollectionViewCell.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F312FAE61FAF614200CE033F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F312FADC1FAD36E500CE033F /* Article.h */,
+				F312FADD1FAD36E500CE033F /* Article.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F312FAE71FAF615B00CE033F /* DataManagers */ = {
+			isa = PBXGroup;
+			children = (
+				F312FAD91FAD361C00CE033F /* RSSFeedDataManager.h */,
+				F312FADA1FAD361C00CE033F /* RSSFeedDataManager.m */,
+			);
+			path = DataManagers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,9 +309,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F312FADE1FAD36E500CE033F /* Article.m in Sources */,
+				F312FADB1FAD361C00CE033F /* RSSFeedDataManager.m in Sources */,
+				F312FAE41FAE375000CE033F /* ArticleDetailsViewController.m in Sources */,
 				F312FAAC1FAD356300CE033F /* ViewController.m in Sources */,
 				F312FAB71FAD356300CE033F /* main.m in Sources */,
 				F312FAA91FAD356300CE033F /* AppDelegate.m in Sources */,
+				F312FAE11FAD4EE100CE033F /* ArticleCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
