@@ -17,16 +17,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    MainViewController *rootViewController = [[MainViewController alloc] init];
-    //Is setting a property for navigationcontroller required? -Shishira
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
   
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavBarBackground"] forBarMetrics:UIBarMetricsDefault];
+    //Navigation bar background image, basically setting up Nav bar and its attributes to refelct accross the application.
+    MainViewController *rootViewController = [[MainViewController alloc] init];
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"NavBarBackground", nil)] forBarMetrics:UIBarMetricsDefault];
     
     NSDictionary *attributes = @{NSForegroundColorAttributeName : [UIColor whiteColor],
-                                 NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:17]
-                                 };
+                                 NSFontAttributeName: [UIFont fontWithName:NSLocalizedString(@"HelveticaNeue", nil) size:17]
+                                 }; 
     [[UINavigationBar appearance] setTitleTextAttributes:attributes];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
