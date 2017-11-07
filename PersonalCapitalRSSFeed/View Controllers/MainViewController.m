@@ -107,19 +107,20 @@
     
 //    NSMutableAttributedString *titleString = [[NSMutableAttributedString alloc] initWithData:[article.title dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:NULL error:nil];
     
-    NSMutableAttributedString *titleString = [[NSMutableAttributedString alloc] initWithString:article.title attributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:16]}];
+    NSMutableAttributedString *titleString = [[NSMutableAttributedString alloc] initWithString:article.title attributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:14]}];
     cell.title.attributedText = titleString;
     
     if(indexPath.row == 0){
-        NSString *appendedString = [[self formatDateWithString:article.publishDate] stringByAppendingString:[NSString stringWithFormat:@" - %@",article.articleDescription]];
+        NSAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithData:[article.articleDescription dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:NULL error:nil];
+        cell.publishDate.attributedText = attributedString;
+        NSString *descString = [attributedString string];
         
-        cell.publishDate.attributedText = [[NSMutableAttributedString alloc] initWithData:[article.articleDescription dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:NULL error:nil];;
+        NSString *appendedCompleteString = [[self formatDateWithString:article.publishDate] stringByAppendingString:[NSString stringWithFormat:@" - %@",descString]];
+        cell.publishDate.font = [UIFont fontWithName:@"HelveticaNeue" size:12.0];
+        cell.publishDate.text = appendedCompleteString;
     }
     return cell;
 }
-
-
-
 
 //NSMutableAttributedString *str = [[NSMutableAttributedString alloc]
 //                                  initWithString: NSLocalizedString(@"Hello ", @"As in Hello World")];
