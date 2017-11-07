@@ -25,7 +25,7 @@
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavBarBackground"] forBarMetrics:UIBarMetricsDefault];
     
     NSDictionary *attributes = @{NSForegroundColorAttributeName : [UIColor whiteColor],
-                                 NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:17]
+                                 NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:17]
                                  };
     [[UINavigationBar appearance] setTitleTextAttributes:attributes];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
