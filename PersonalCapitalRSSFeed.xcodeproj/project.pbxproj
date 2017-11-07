@@ -122,6 +122,7 @@
 				F312FAE71FAF615B00CE033F /* DataManagers */,
 				F312FAE61FAF614200CE033F /* Models */,
 				F312FAE51FAF612900CE033F /* View Controllers */,
+				F312FAB51FAD356300CE033F /* Info.plist */,
 			);
 			path = PersonalCapitalRSSFeed;
 			sourceTree = "<group>";
@@ -185,7 +186,6 @@
 				F312FAAD1FAD356300CE033F /* Main.storyboard */,
 				F312FAB01FAD356300CE033F /* Assets.xcassets */,
 				F312FAB21FAD356300CE033F /* LaunchScreen.storyboard */,
-				F312FAB51FAD356300CE033F /* Info.plist */,
 				F312FAB61FAD356300CE033F /* main.m */,
 				F3EE879D1FB25D160082D4AB /* Localizable.strings */,
 			);
