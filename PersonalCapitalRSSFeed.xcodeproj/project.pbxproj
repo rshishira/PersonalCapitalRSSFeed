@@ -115,11 +115,9 @@
 			children = (
 				F312FAA71FAD356300CE033F /* AppDelegate.h */,
 				F312FAA81FAD356300CE033F /* AppDelegate.m */,
-				F312FAAA1FAD356300CE033F /* ViewController.h */,
-				F312FAAB1FAD356300CE033F /* ViewController.m */,
 				F312FAE71FAF615B00CE033F /* DataManagers */,
 				F312FAE61FAF614200CE033F /* Models */,
-				F312FAE51FAF612900CE033F /* Controllers */,
+				F312FAE51FAF612900CE033F /* View Controllers */,
 				F312FAAD1FAD356300CE033F /* Main.storyboard */,
 				F312FAB01FAD356300CE033F /* Assets.xcassets */,
 				F312FAB21FAD356300CE033F /* LaunchScreen.storyboard */,
@@ -147,15 +145,17 @@
 			path = PersonalCapitalRSSFeedUITests;
 			sourceTree = "<group>";
 		};
-		F312FAE51FAF612900CE033F /* Controllers */ = {
+		F312FAE51FAF612900CE033F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F312FAAA1FAD356300CE033F /* ViewController.h */,
+				F312FAAB1FAD356300CE033F /* ViewController.m */,
 				F312FAE21FAE375000CE033F /* ArticleDetailsViewController.h */,
 				F312FAE31FAE375000CE033F /* ArticleDetailsViewController.m */,
 				F312FADF1FAD4EE100CE033F /* ArticleCollectionViewCell.h */,
 				F312FAE01FAD4EE100CE033F /* ArticleCollectionViewCell.m */,
 			);
-			path = Controllers;
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		F312FAE61FAF614200CE033F /* Models */ = {
