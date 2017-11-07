@@ -32,11 +32,21 @@
                                                     return;
                                                 }
                                                 weakSelf.articleArray = [[NSMutableArray alloc] init];
+                                                if(data == nil){
+                                                    completionHandler(nil, [NSError errorWithDomain:@"PersonalCapitalRSSFeed" code:-1 userInfo:@{NSLocalizedDescriptionKey:@"No data returned!"}]);
+                                                   return;
+                                                }
                                                 NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
                                                 [parser setDelegate:self];
-                                                [parser parse];
                                                 
-                                                completionHandler(weakSelf.articleArray, nil);
+                                                BOOL result = [parser parse];
+                                                if(result){
+                                                    completionHandler(weakSelf.articleArray, nil);
+                                                } else {
+                                                    completionHandler(nil, [NSError errorWithDomain:@"PersonalCapitalRSSFeed" code:-1 userInfo:@{NSLocalizedDescriptionKey:@"Error Parsing data"}]);
+                                                    return;
+                                                }
+                                                
                                             }];
     [dataTask resume];
 }
@@ -61,7 +71,8 @@
     if ([self.currentElementName isEqualToString:@"title"]){
         self.currentArticle.title = self.currentString;
     } else if ([self.currentElementName isEqualToString:@"link"]){
-        self.currentArticle.link = self.currentString;
+        NSString *appendedString = [self.currentString stringByAppendingString:@"?displayMobileNavigation=0"];
+        self.currentArticle.link = appendedString;
     } else if ([self.currentElementName isEqualToString:@"pubDate"]){
         self.currentArticle.publishDate = self.currentString;
     } else if ([self.currentElementName isEqualToString:@"description"]){

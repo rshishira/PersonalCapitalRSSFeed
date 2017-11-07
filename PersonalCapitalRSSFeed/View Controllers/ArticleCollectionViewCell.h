@@ -11,6 +11,6 @@
 @interface ArticleCollectionViewCell : UICollectionViewCell
 @property(nonatomic,strong) UILabel *title;
 @property(nonatomic,strong) UIImageView *articleImage;
-@property(nonatomic,strong) UITextView *articleDescription;
+@property(nonatomic,strong) UILabel *articleDescription;
 @property(nonatomic,strong) UILabel *publishDate;
 @end

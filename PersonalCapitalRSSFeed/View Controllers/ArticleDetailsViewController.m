@@ -7,6 +7,7 @@
 //
 
 #import "ArticleDetailsViewController.h"
+#import "ActivityIndicatorFactory.h"
 
 @interface ArticleDetailsViewController ()
 @property (nonatomic, strong) UIWebView *webview;
@@ -14,7 +15,6 @@
 @end
 
 @implementation ArticleDetailsViewController
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,47 +26,31 @@
     if(!self.navigationItem.titleView){
         self.navigationItem.titleView = ({
             UILabel *titleView = [UILabel new];
-            titleView.numberOfLines = 0;
             titleView.textAlignment = NSTextAlignmentCenter;
+            titleView.textColor = [UIColor whiteColor];
             titleView.attributedText = [[NSAttributedString alloc] initWithString:self.article.title attributes:
                                         self.navigationController.navigationBar.titleTextAttributes
                                         ];
-            
+
             [titleView setAdjustsFontSizeToFitWidth:YES];
             titleView;
         });
     }
-    
     [self setUpWebView];
 }
 
--(void) viewWillAppear:(BOOL)animated {
-        [self.webview.scrollView setContentInset:UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height, 0, 0, 0)];
-}
--(void) setUpWebView{
-
-    /** Reminder - Check if the Article link is not empty string! then load the url - Maybe should do in the datamanager Parse level itself*/
-    //As per requirement, append "?displayMobileNavigation=0" to the article link.
-    
+-(void) setUpWebView {
     self.webview = [[UIWebView alloc] initWithFrame:self.view.frame];
     [self.webview setDelegate:self];
-    NSString *appendedString = [self.article.link stringByAppendingString:@"?displayMobileNavigation=0"];
     
-    NSURL *nsurl=[NSURL URLWithString:appendedString];
+    NSURL *nsurl=[NSURL URLWithString:self.article.link];
     NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
     [self.webview loadRequest:nsrequest];
     [self.view addSubview:self.webview];
     
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
-    self.activityIndicator.opaque = YES;
-    self.activityIndicator.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.4f];
+    self.activityIndicator = [ActivityIndicatorFactory activityIndicator];
     self.activityIndicator.center = self.view.center;
-    self.activityIndicator.layer.cornerRadius = 10;
-    self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    [self.activityIndicator setColor:[UIColor whiteColor]];
     [self.webview addSubview:self.activityIndicator];
-    [self.activityIndicator startAnimating];
-
 }
 
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

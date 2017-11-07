@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F30286E51FB144E100F8B2ED /* ActivityIndicatorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F30286E41FB144E100F8B2ED /* ActivityIndicatorFactory.m */; };
 		F312FAA91FAD356300CE033F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F312FAA81FAD356300CE033F /* AppDelegate.m */; };
-		F312FAAC1FAD356300CE033F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F312FAAB1FAD356300CE033F /* ViewController.m */; };
+		F312FAAC1FAD356300CE033F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F312FAAB1FAD356300CE033F /* MainViewController.m */; };
 		F312FAAF1FAD356300CE033F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F312FAAD1FAD356300CE033F /* Main.storyboard */; };
 		F312FAB11FAD356300CE033F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F312FAB01FAD356300CE033F /* Assets.xcassets */; };
 		F312FAB41FAD356300CE033F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F312FAB21FAD356300CE033F /* LaunchScreen.storyboard */; };
@@ -39,11 +40,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F30286E31FB144E100F8B2ED /* ActivityIndicatorFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorFactory.h; sourceTree = "<group>"; };
+		F30286E41FB144E100F8B2ED /* ActivityIndicatorFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorFactory.m; sourceTree = "<group>"; };
 		F312FAA41FAD356300CE033F /* PersonalCapitalRSSFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PersonalCapitalRSSFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F312FAA71FAD356300CE033F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F312FAA81FAD356300CE033F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F312FAAA1FAD356300CE033F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F312FAAB1FAD356300CE033F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F312FAAA1FAD356300CE033F /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		F312FAAB1FAD356300CE033F /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		F312FAAE1FAD356300CE033F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F312FAB01FAD356300CE033F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F312FAB31FAD356300CE033F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -148,12 +151,14 @@
 		F312FAE51FAF612900CE033F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F312FAAA1FAD356300CE033F /* ViewController.h */,
-				F312FAAB1FAD356300CE033F /* ViewController.m */,
+				F312FAAA1FAD356300CE033F /* MainViewController.h */,
+				F312FAAB1FAD356300CE033F /* MainViewController.m */,
 				F312FAE21FAE375000CE033F /* ArticleDetailsViewController.h */,
 				F312FAE31FAE375000CE033F /* ArticleDetailsViewController.m */,
 				F312FADF1FAD4EE100CE033F /* ArticleCollectionViewCell.h */,
 				F312FAE01FAD4EE100CE033F /* ArticleCollectionViewCell.m */,
+				F30286E31FB144E100F8B2ED /* ActivityIndicatorFactory.h */,
+				F30286E41FB144E100F8B2ED /* ActivityIndicatorFactory.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -312,10 +317,11 @@
 				F312FADE1FAD36E500CE033F /* Article.m in Sources */,
 				F312FADB1FAD361C00CE033F /* RSSFeedDataManager.m in Sources */,
 				F312FAE41FAE375000CE033F /* ArticleDetailsViewController.m in Sources */,
-				F312FAAC1FAD356300CE033F /* ViewController.m in Sources */,
+				F312FAAC1FAD356300CE033F /* MainViewController.m in Sources */,
 				F312FAB71FAD356300CE033F /* main.m in Sources */,
 				F312FAA91FAD356300CE033F /* AppDelegate.m in Sources */,
 				F312FAE11FAD4EE100CE033F /* ArticleCollectionViewCell.m in Sources */,
+				F30286E51FB144E100F8B2ED /* ActivityIndicatorFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "MainViewController.h"
 
 @interface AppDelegate ()
 
@@ -18,9 +18,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    ViewController *rootViewController = [[ViewController alloc] init];
+    MainViewController *rootViewController = [[MainViewController alloc] init];
     //Is setting a property for navigationcontroller required? -Shishira
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+  
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"NavBarBackground"] forBarMetrics:UIBarMetricsDefault];
+    
+    NSDictionary *attributes = @{NSForegroundColorAttributeName : [UIColor whiteColor],
+                                 NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:17]
+                                 };
+    [[UINavigationBar appearance] setTitleTextAttributes:attributes];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
     self.window.rootViewController = self.navigationController;
     
     return YES;

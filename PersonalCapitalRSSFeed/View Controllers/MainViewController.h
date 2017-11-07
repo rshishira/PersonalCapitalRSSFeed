@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MainViewController.h
 //  PersonalCapitalRSSFeed
 //
 //  Created by Shishira Ramesh on 11/3/17.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface MainViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 
 @end
