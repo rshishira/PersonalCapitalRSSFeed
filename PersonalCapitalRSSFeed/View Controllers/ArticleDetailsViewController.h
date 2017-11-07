@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Article.h"
 
-@interface ArticleDetailsViewController : UIViewController <UIWebViewDelegate>
+@interface ArticleDetailsViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate>
 
 @property(nonatomic, strong) Article *article;
 
