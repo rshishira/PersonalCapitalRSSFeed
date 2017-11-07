@@ -99,13 +99,10 @@
     
     Article *article = [self.articlesArray objectAtIndex:indexPath.row];
     cell.backgroundColor = [UIColor whiteColor];
-    cell.layer.cornerRadius = 10;
 
     UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:article.imageDetails[@"url"]]]];
     cell.articleImage.image = image;
-    
-//    NSMutableAttributedString *titleString = [[NSMutableAttributedString alloc] initWithData:[article.title dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:NULL error:nil];
-    
+        
     NSMutableAttributedString *titleString = [[NSMutableAttributedString alloc] initWithString:article.title attributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:14]}];
     cell.title.attributedText = titleString;
     
@@ -121,24 +118,16 @@
     return cell;
 }
 
-//NSMutableAttributedString *str = [[NSMutableAttributedString alloc]
-//                                  initWithString: NSLocalizedString(@"Hello ", @"As in Hello World")];
-//
-//[str appendAttributedString: [[NSAttributedString alloc]
-//                              initWithString: NSLocalizedString(@"World", @"As in Hello World")
-//                              attributes: @{NSFontAttributeName: [UIFont boldSystemFontOfSize:12]}
-//                              ]];
-//
-//label.attributedString = str;
-
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.row == 0){
        return CGSizeMake(self.view.frame.size.width - 20, 280);
     }
-    //Use SizeClasses and see if UIView or View Controller has an SizeClass attribute
-    //and based on Compact or Regular properties in size class, user it.
-    return CGSizeMake(self.view.frame.size.width/2 -20, 230);
+    
+    if (self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
+        return CGSizeMake(self.view.frame.size.width/2 - 20, 230);
+    } else {
+         return CGSizeMake(self.view.frame.size.width/3 - 20, 230);
+    }
 }
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
