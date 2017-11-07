@@ -16,13 +16,15 @@
      //******Add autolayout constraints and NOT use frames and bounds!!
         self.contentView.layer.borderWidth = 2.0;
         self.contentView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-        //self.contentView.layer.cornerRadius = 20;
+        self.contentView.layer.cornerRadius = 10;
+        
         
 //        set Image view - Not parsed yet properly.
         self.articleImage = [[UIImageView alloc] init];
-        self.articleImage.contentMode = UIViewContentModeScaleToFill;
+        [self.articleImage setContentMode:UIViewContentModeScaleAspectFill];
         [self.articleImage setTranslatesAutoresizingMaskIntoConstraints:NO];
-     
+        [self.articleImage.layer setMasksToBounds:YES];
+        self.articleImage.layer.cornerRadius = 10;
         [self.contentView addSubview:self.articleImage];
         
         NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.articleImage attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeTop multiplier:1 constant:0];
