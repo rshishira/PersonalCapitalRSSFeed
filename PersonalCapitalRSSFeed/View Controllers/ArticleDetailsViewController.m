@@ -21,8 +21,8 @@
     
     //Navigation title too long, handling options:
     //Either Autoresize to fit the titleview frame.
-    //Or Truncate the text
-    //Or add two lines to title - 1.it doesnt look good and apple doesnt recommend.
+    //Or WordWrap
+    //Or add two lines to title
     if(!self.navigationItem.titleView){
         self.navigationItem.titleView = ({
             UILabel *titleView = [UILabel new];
@@ -30,7 +30,6 @@
             titleView.textColor = [UIColor whiteColor];
             titleView.attributedText = [[NSAttributedString alloc] initWithString:self.article.title attributes:self.navigationController.navigationBar.titleTextAttributes
                                         ];
-
             [titleView setAdjustsFontSizeToFitWidth:YES];
             titleView;
         });
