@@ -12,6 +12,7 @@
 #import "ArticleDetailsViewController.h"
 #import "ActivityIndicatorFactory.h"
 
+NSString *const cellID = @"ArticleCell";
 
 @interface MainViewController ()
 
@@ -27,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationItem setTitle:@"Personal Capital RSS Feed"];
+    [self.navigationItem setTitle:NSLocalizedString(@"MainViewNavTitle", nil)];
     
     [self setUpCollectionView];
     [self getRSSFeedData];
@@ -63,7 +64,7 @@
     [self.collectionView setBackgroundColor:[UIColor whiteColor]];
     [self.collectionView setDelegate:self];
     [self.collectionView setDataSource:self];
-    [self.collectionView registerClass:[ArticleCollectionViewCell class] forCellWithReuseIdentifier:@"ArticleCell"];
+    [self.collectionView registerClass:[ArticleCollectionViewCell class] forCellWithReuseIdentifier:cellID];
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl setTintColor:[UIColor blueColor]];
@@ -80,10 +81,9 @@
 
 -(NSString *)formatDateWithString:(NSString *)date{
     NSDateFormatter * formatter =  [[NSDateFormatter alloc] init];
-    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-    [formatter setDateFormat:@"EEE, dd MMM YYYY HH:mm:ss zzz"];
+    [formatter setDateFormat:NSLocalizedString(@"InputDateFormat", nil)];
     NSDate * convrtedDate = [formatter dateFromString:date];
-    [formatter setDateFormat:@"MMMM dd, YYYY"];
+    [formatter setDateFormat:NSLocalizedString(@"OutputDateFormat", nil)];
     NSString *dateString = [formatter stringFromDate:convrtedDate];
     return dateString;
 }
@@ -95,7 +95,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ArticleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ArticleCell" forIndexPath:indexPath];
+    ArticleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     
     Article *article = [self.articlesArray objectAtIndex:indexPath.row];
     cell.backgroundColor = [UIColor whiteColor];
@@ -112,7 +112,7 @@
         NSString *descString = [attributedString string];
         
         NSString *appendedCompleteString = [[self formatDateWithString:article.publishDate] stringByAppendingString:[NSString stringWithFormat:@" - %@",descString]];
-        cell.publishDate.font = [UIFont fontWithName:@"HelveticaNeue" size:12.0];
+        cell.publishDate.font = [UIFont fontWithName:NSLocalizedString(@"HelveticaNeue", nil) size:12.0];
         cell.publishDate.text = appendedCompleteString;
     }
     return cell;
