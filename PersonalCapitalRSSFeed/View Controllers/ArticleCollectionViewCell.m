@@ -16,7 +16,7 @@
      //******Add autolayout constraints and NOT use frames and bounds!!
         self.contentView.layer.borderWidth = 2.0;
         self.contentView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-        self.contentView.layer.cornerRadius = 20;
+        //self.contentView.layer.cornerRadius = 20;
         
 //        set Image view - Not parsed yet properly.
         self.articleImage = [[UIImageView alloc] init];
@@ -30,7 +30,6 @@
         NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.articleImage attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeRight multiplier:1 constant:0];
         NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.articleImage attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:160];
         
-        //self.articleImage.clipsToBounds = YES;
         [self.contentView addConstraints:@[top, left, right, height]];
         
         //Init Article Title
@@ -44,7 +43,7 @@
         NSLayoutConstraint *topLabel = [NSLayoutConstraint constraintWithItem:self.title attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.articleImage attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
         NSLayoutConstraint *leftLabel = [NSLayoutConstraint constraintWithItem:self.title attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeft multiplier:1 constant:10];
         NSLayoutConstraint *rightLabel = [NSLayoutConstraint constraintWithItem:self.title attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeRight multiplier:1 constant:0];
-        NSLayoutConstraint *heightLabel = [NSLayoutConstraint constraintWithItem:self.title attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:60];
+        NSLayoutConstraint *heightLabel = [NSLayoutConstraint constraintWithItem:self.title attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:40];
 
         [self.contentView addConstraints:@[topLabel, leftLabel, rightLabel, heightLabel]];
         
@@ -54,12 +53,14 @@
         self.publishDate.translatesAutoresizingMaskIntoConstraints = NO;
         [self.publishDate setTextAlignment:NSTextAlignmentLeft];
         [self.publishDate setLineBreakMode:NSLineBreakByWordWrapping];
+        [self.publishDate setNumberOfLines:3];
+    
         [self.contentView addSubview:self.publishDate];
         
-        NSLayoutConstraint *topDate = [NSLayoutConstraint constraintWithItem:self.publishDate attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.title attribute:NSLayoutAttributeBottom multiplier:1 constant:10];
+        NSLayoutConstraint *topDate = [NSLayoutConstraint constraintWithItem:self.publishDate attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.title attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
         NSLayoutConstraint *leftDate = [NSLayoutConstraint constraintWithItem:self.publishDate attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeft multiplier:1 constant:10];
         NSLayoutConstraint *rightDate = [NSLayoutConstraint constraintWithItem:self.publishDate attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeRight multiplier:1 constant:0];
-        NSLayoutConstraint *heightDate = [NSLayoutConstraint constraintWithItem:self.publishDate attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:30];
+        NSLayoutConstraint *heightDate = [NSLayoutConstraint constraintWithItem:self.publishDate attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:100];
         
         [self.contentView addConstraints:@[topDate, leftDate, rightDate, heightDate]];
         
