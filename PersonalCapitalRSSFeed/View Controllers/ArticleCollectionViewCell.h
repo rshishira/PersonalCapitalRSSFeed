@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface ArticleCollectionViewCell : UICollectionViewCell
 @property(nonatomic,strong) UILabel *title;
