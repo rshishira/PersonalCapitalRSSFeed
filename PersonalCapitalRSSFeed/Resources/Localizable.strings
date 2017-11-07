@@ -6,3 +6,34 @@
   Copyright © 2017 Shishira Ramesh. All rights reserved.
 */
 
+//RSS Feed Url
+"URL" = "https://blog.personalcapital.com/feed/?cat=3,891,890,68,284";
+
+//Error Domain Name
+"PersonalCapitalRSSFeed" = "PersonalCapitalRSSFeed";
+
+//No data returned message
+"NoDataMessage" = "Opps! No data returned!";
+
+//Parsing error message
+"ParsingErrorMessage" = "Sorry, error parsing data!";
+
+//To eliminate navigationbar contained within the rendered website.
+"displayMobileNavigation" = "?displayMobileNavigation=0";
+
+//Navigation bar background image
+"NavBarBackground" = "NavBarBackground";
+
+//Font name thats used accross the application
+"HelveticaNeue" = "HelveticaNeue";
+
+//Main view title
+"MainViewNavTitle" = "Personal Capital RSS Feed";
+
+//Date format received from feed
+"InputDateFormat" = "EEE, dd MMM YYYY HH:mm:ss zzz";
+
+//Date format expected as per requirement
+"OutputDateFormat" = "MMMM dd, YYYY";
+
+
