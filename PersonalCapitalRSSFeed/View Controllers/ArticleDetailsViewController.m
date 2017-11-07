@@ -39,13 +39,21 @@
 }
 
 -(void) setUpWebView {
-    self.webview = [[UIWebView alloc] initWithFrame:self.view.frame];
+    self.webview = [[UIWebView alloc] initWithFrame:CGRectZero];
+    self.webview.translatesAutoresizingMaskIntoConstraints = NO;
     [self.webview setDelegate:self];
+    [self.view addSubview:self.webview];
+    
+    NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.webview attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1 constant:0];
+    NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.webview attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.webview attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:0];
+    NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:self.webview attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:0];
+    [self.view addConstraints:@[top, bottom, left, right]];
     
     NSURL *nsurl=[NSURL URLWithString:self.article.link];
     NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
     [self.webview loadRequest:nsrequest];
-    [self.view addSubview:self.webview];
+    
     
     self.activityIndicator = [ActivityIndicatorFactory activityIndicator];
     self.activityIndicator.center = self.view.center;
