@@ -28,8 +28,7 @@
             UILabel *titleView = [UILabel new];
             titleView.textAlignment = NSTextAlignmentCenter;
             titleView.textColor = [UIColor whiteColor];
-            titleView.attributedText = [[NSAttributedString alloc] initWithString:self.article.title attributes:
-                                        self.navigationController.navigationBar.titleTextAttributes
+            titleView.attributedText = [[NSAttributedString alloc] initWithString:self.article.title attributes:self.navigationController.navigationBar.titleTextAttributes
                                         ];
 
             [titleView setAdjustsFontSizeToFitWidth:YES];
