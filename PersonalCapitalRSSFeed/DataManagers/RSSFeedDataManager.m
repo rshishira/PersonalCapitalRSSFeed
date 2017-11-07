@@ -17,9 +17,6 @@
 
 @end
 
-
-
-
 @implementation RSSFeedDataManager
 
 -(void) getArticleWithCompletion:(void (^)(NSArray<Article*>*, NSError*)) completionHandler{
@@ -58,8 +55,6 @@
             self.currentArticle.imageDetails = [attributeDict copy];
         }
     }
-    NSLog(@"DidStart %@", elementName);
-    
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName{
@@ -77,13 +72,10 @@
     if([elementName isEqualToString:@"item"]){
         [self.articleArray addObject:self.currentArticle];
     }
-    NSLog(@"DidEnd %@", elementName);
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
-    NSLog(@"FoundCharacters %@",string);
     self.currentString = [self.currentString stringByAppendingString:string];
-
 }
 
 @end
