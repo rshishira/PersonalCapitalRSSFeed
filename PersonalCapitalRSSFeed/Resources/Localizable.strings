@@ -7,7 +7,7 @@
 */
 
 //RSS Feed Url
-"URL" = "https://blog.personalcapital.com/feed/?cat=3,891,890,68,284";
+"RssFeedURL" = "https://blog.personalcapital.com/feed/?cat=3,891,890,68,284";
 
 //Error Domain Name
 "PersonalCapitalRSSFeed" = "PersonalCapitalRSSFeed";

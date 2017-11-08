@@ -30,23 +30,28 @@ NSString *const cellID = @"ArticleCell";
     [super viewDidLoad];
     [self.navigationItem setTitle:NSLocalizedString(@"MainViewNavTitle", nil)];
     
+    //Set up CollectionView and make data request below:
     [self setUpCollectionView];
     [self getRSSFeedData];
 }
 
 #pragma RSS Feed Data Request
 - (void) getRSSFeedData {
-
+    
+    //Have created a factory method in ActivityIndicatorFactory.m which instantiates
+    //UIActivityIndicator and starts the animation when called below.
+    //By this approach we can access activity indicator accross the application.
     self.activityIndicator = [ActivityIndicatorFactory activityIndicator];
     self.activityIndicator.center = self.view.center;
     [self.collectionView addSubview:self.activityIndicator];
 
+    //Block to handle data request asynchronously and on completion display the
+    //data on main queue.
     RSSFeedDataManager *dataManager = [[RSSFeedDataManager alloc] init];
     __weak typeof(self) weakSelf = self;
     [dataManager getArticleWithCompletion:^(NSArray<Article *> *articles, NSError *error) {
         weakSelf.articlesArray = articles;
         dispatch_async(dispatch_get_main_queue(), ^{
-            
             [weakSelf.collectionView reloadData];
             [self.collectionView.refreshControl endRefreshing];
             [self.activityIndicator stopAnimating];
@@ -66,12 +71,14 @@ NSString *const cellID = @"ArticleCell";
     [self.collectionView setDataSource:self];
     [self.collectionView registerClass:[ArticleCollectionViewCell class] forCellWithReuseIdentifier:cellID];
     
+    //Adding Pull to refresh, which is a property available on UICollectionView and setting a traget @selector to get refreshed RSS feed data.
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl setTintColor:[UIColor blueColor]];
     [refreshControl addTarget:self action:@selector(getRSSFeedData) forControlEvents:UIControlEventValueChanged];
     [self.collectionView setRefreshControl:refreshControl];
     [self.view addSubview:self.collectionView];
     
+    //Adding autolayout constraints to UICollectionView in relation to self.view
     NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1 constant:0];
     NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
     NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.collectionView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:0];
@@ -79,6 +86,7 @@ NSString *const cellID = @"ArticleCell";
     [self.view addConstraints:@[top, bottom, left, right]];
 }
 
+//This method converts the RSS Feed Published date format to the desired date format to be plugged into the UI.
 -(NSString *)formatDateWithString:(NSString *)date{
     NSDateFormatter * formatter =  [[NSDateFormatter alloc] init];
     [formatter setDateFormat:NSLocalizedString(@"InputDateFormat", nil)];
@@ -106,6 +114,7 @@ NSString *const cellID = @"ArticleCell";
     NSMutableAttributedString *titleString = [[NSMutableAttributedString alloc] initWithString:article.title attributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:14]}];
     cell.title.attributedText = titleString;
     
+    //Display NSAttributedString format of Publish date appended with Article description only for the first article on the view.
     if(indexPath.row == 0){
         NSAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithData:[article.articleDescription dataUsingEncoding:NSUTF8StringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:NULL error:nil];
         cell.publishDate.attributedText = attributedString;
@@ -119,10 +128,16 @@ NSString *const cellID = @"ArticleCell";
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    //Set the below size of the cell Only for the first article.
     if(indexPath.row == 0){
        return CGSizeMake(self.view.frame.size.width - 20, 280);
     }
     
+    //For the rest of the cells, for handheld device (whose size class property will be UIUserInterfaceSizeClassCompact)
+    //set cell in two rows. else if its a tablet(whose size class property will be UIUserInterfaceSizeClassRegular) set cell in three rows.
+    //The only issue is, Handheld device in landscape returns size class property UIUserInterfaceSizeClassRegular. which will then
+    //set cell in three rows for cells.
+    //Have to tackle this issue**
     if (self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
         return CGSizeMake(self.view.frame.size.width/2 - 20, 230);
     } else {
@@ -134,6 +149,8 @@ NSString *const cellID = @"ArticleCell";
     return UIEdgeInsetsMake(10, 10, 10, 5);
 }
 
+//On did select of the cell/article, passing the Article model as a property to the ArticleDetailViewController
+//programatically pushing to the detail VC
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     self.articleDetailsVC = [[ArticleDetailsViewController alloc] init];
     [self.articleDetailsVC setArticle:self.articlesArray[indexPath.item]];

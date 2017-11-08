@@ -19,11 +19,11 @@
 
 @implementation RSSFeedDataManager
 
+//Establish a session and make a rss feed data request with the given url and initialize NSXMLParser in this function, follwed by set of parser delegates and start parsing.
 -(void) getArticleWithCompletion:(void (^)(NSArray<Article*>*, NSError*)) completionHandler{
     
     NSURLSession *session = [NSURLSession sharedSession];
-
-    NSString *articleURL = NSLocalizedString(@"URL", nil);
+    NSString *articleURL = NSLocalizedString(@"RssFeedURL", nil);
     __weak typeof(self) weakSelf = self;
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:articleURL] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if(error){
@@ -51,12 +51,13 @@
 }
 
 #pragma NSXMLParser delegates
-
+// Called when the parser finds an element start tag.
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName attributes:(NSDictionary<NSString *, NSString *> *)attributeDict{
     
     self.currentElementName = elementName;
     self.currentString = @"";
     
+    //We are looking for our "item" and "media:content" nodes.
     if([elementName isEqualToString:@"item"]){
         self.currentArticle = [[Article alloc] init];
     } else if ([self.currentElementName isEqualToString:@"media:content"]){
@@ -66,11 +67,12 @@
     }
 }
 
+//Called when an end tag is encountered. The various parameters are supplied below.
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName{
     if ([self.currentElementName isEqualToString:@"title"]){
         self.currentArticle.title = self.currentString;
     } else if ([self.currentElementName isEqualToString:@"link"]){
-        //Append this string to eliminate navigationbar contained within the rendered website.
+        //Append this string to the article link to eliminate chrome navigationbar contained within the rendered website.
         NSString *appendedString = [self.currentString stringByAppendingString:NSLocalizedString(@"displayMobileNavigation", nil)];
         self.currentArticle.link = appendedString;
     } else if ([self.currentElementName isEqualToString:@"pubDate"]){
@@ -85,6 +87,7 @@
     }
 }
 
+// This returns the string of the characters encountered thus far. 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
     self.currentString = [self.currentString stringByAppendingString:string];
 }

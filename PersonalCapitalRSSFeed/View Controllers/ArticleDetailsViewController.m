@@ -20,9 +20,8 @@
     [super viewDidLoad];
     
     //Navigation title too long, handling options:
-    //Either Autoresize to fit the titleview frame.
-    //Or WordWrap
-    //Or add two lines to title
+    //Either Autoresize to fit the titleview frame - have taken this approach below.
+    //Or WordWrap and two lines to title
     if(!self.navigationItem.titleView){
         self.navigationItem.titleView = ({
             UILabel *titleView = [UILabel new];
@@ -43,6 +42,7 @@
     [self.webview setDelegate:self];
     [self.view addSubview:self.webview];
     
+    //Adding autolayout constraints to UIWebView in relation to self.view
     NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:self.webview attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1 constant:0];
     NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:self.webview attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
     NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:self.webview attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:0];

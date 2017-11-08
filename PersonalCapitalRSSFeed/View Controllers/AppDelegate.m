@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   
-    //Navigation bar background image, basically setting up Nav bar and its attributes to refelct accross the application.
+    //Placing the given rootviewcontroler inside a NavigationController and the bar background image and other common appearance attributes are set here to refelct same accross the application.
     MainViewController *rootViewController = [[MainViewController alloc] init];
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:NSLocalizedString(@"NavBarBackground", nil)] forBarMetrics:UIBarMetricsDefault];
