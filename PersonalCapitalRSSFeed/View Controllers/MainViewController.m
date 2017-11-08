@@ -22,6 +22,7 @@ NSString *const cellID = @"ArticleCell";
 @property (nonatomic, strong) UILabel *redView;
 @property (nonatomic, strong) ArticleDetailsViewController *articleDetailsVC;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
 @implementation MainViewController
@@ -72,10 +73,10 @@ NSString *const cellID = @"ArticleCell";
     [self.collectionView registerClass:[ArticleCollectionViewCell class] forCellWithReuseIdentifier:cellID];
     
     //Adding Pull to refresh, which is a property available on UICollectionView and setting a traget @selector to get refreshed RSS feed data.
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl setTintColor:[UIColor blueColor]];
-    [refreshControl addTarget:self action:@selector(getRSSFeedData) forControlEvents:UIControlEventValueChanged];
-    [self.collectionView setRefreshControl:refreshControl];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl setTintColor:[UIColor blueColor]];
+    [self.refreshControl addTarget:self action:@selector(getRSSFeedData) forControlEvents:UIControlEventValueChanged];
+    [self.collectionView setRefreshControl:self.refreshControl];
     [self.view addSubview:self.collectionView];
     
     //Adding autolayout constraints to UICollectionView in relation to self.view
@@ -89,10 +90,11 @@ NSString *const cellID = @"ArticleCell";
 //This method converts the RSS Feed Published date format to the desired date format to be plugged into the UI.
 -(NSString *)formatDateWithString:(NSString *)date{
     NSDateFormatter * formatter =  [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:NSLocalizedString(@"InputDateFormat", nil)];
-    NSDate * convrtedDate = [formatter dateFromString:date];
+    [formatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss ZZZ\n"];
+    NSDate * convertedDate = [formatter dateFromString:date];
+    
     [formatter setDateFormat:NSLocalizedString(@"OutputDateFormat", nil)];
-    NSString *dateString = [formatter stringFromDate:convrtedDate];
+    NSString *dateString = [formatter stringFromDate:convertedDate];
     return dateString;
 }
 
@@ -135,9 +137,6 @@ NSString *const cellID = @"ArticleCell";
     
     //For the rest of the cells, for handheld device (whose size class property will be UIUserInterfaceSizeClassCompact)
     //set cell in two rows. else if its a tablet(whose size class property will be UIUserInterfaceSizeClassRegular) set cell in three rows.
-    //The only issue is, Handheld device in landscape returns size class property UIUserInterfaceSizeClassRegular. which will then
-    //set cell in three rows for cells.
-    //Have to tackle this issue**
     if (self.view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
         return CGSizeMake(self.view.frame.size.width/2 - 20, 230);
     } else {
@@ -157,6 +156,14 @@ NSString *const cellID = @"ArticleCell";
     self.articleDetailsVC.view.backgroundColor = [UIColor whiteColor];
     
     [self.navigationController pushViewController:self.articleDetailsVC animated:YES];
+}
+
+    //CollectionView changes its cell layout on device orientation change, to tackle this I tried using LayoutIfNeeded, but dint work.
+    //So had to resort to reload of CollectionView, which is not the best approach, but calls the sizeForItemAtIndexPath to layout
+    //cells again.
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
+    //[self.collectionView layoutIfNeeded];
+    [self.collectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
